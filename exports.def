@@ -1,0 +1,4 @@
+LIBRARY	"neoh4x0r-gpad-SSE"
+EXPORTS
+SKSEPlugin_Query
+SKSEPlugin_Load

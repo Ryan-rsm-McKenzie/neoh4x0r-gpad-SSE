@@ -1,0 +1,152 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="scripts">
+      <UniqueIdentifier>{608b3348-3e11-4a3d-8582-6383b47884f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Logging">
+      <UniqueIdentifier>{7f253c4e-45bf-462f-902c-cf897eb5a2d3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{e7ad29b0-5868-4f63-9124-51bb96130ceb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Papyrus">
+      <UniqueIdentifier>{96107905-8426-4e19-a5fe-1fe3e1665e2e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Papyrus\Input">
+      <UniqueIdentifier>{f0ff5a0b-01fb-4d30-be21-b4bae643b0fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Papyrus\Controller">
+      <UniqueIdentifier>{72302946-3ca6-43a8-9361-6c1d22c7ede7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Papyrus\Scaleform">
+      <UniqueIdentifier>{9b21b984-c325-47b2-aeba-4c570876b29c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Papyrus\Camera">
+      <UniqueIdentifier>{1f6e39fe-9805-41a9-83b2-818cbaa902af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hooks">
+      <UniqueIdentifier>{e2ad925b-a7b6-4edf-8c5e-0e979d6747d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hooks\XInput">
+      <UniqueIdentifier>{9234506d-033c-4fc6-90ea-318513986037}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hooks\Keyboard">
+      <UniqueIdentifier>{21f8a915-45be-4804-8af1-127a4b38b10d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Hooks\Input">
+      <UniqueIdentifier>{0bb03c4b-cbf6-42d8-a897-bcc01b531a5d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities">
+      <UniqueIdentifier>{493757ce-5cb2-4414-9515-e8cdef239235}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utilities\Camera">
+      <UniqueIdentifier>{10ee5787-7b05-4a4b-90bb-76bd1c5c1478}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Version">
+      <UniqueIdentifier>{a79f9791-81ef-46be-9df2-792a46930c13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Interfaces">
+      <UniqueIdentifier>{d113781d-4d15-4bc3-ad93-f3a5fb3d5546}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="scripts\Controller.psc">
+      <Filter>scripts</Filter>
+    </None>
+    <None Include="neoh4x0r-gpad.ini">
+      <Filter>Config</Filter>
+    </None>
+    <None Include="exports.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Logger.cpp">
+      <Filter>Logging</Filter>
+    </ClCompile>
+    <ClCompile Include="gpadconf.cpp">
+      <Filter>Config</Filter>
+    </ClCompile>
+    <ClCompile Include="PapyrusXInput.cpp">
+      <Filter>Papyrus\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="papyrusController.cpp">
+      <Filter>Papyrus\Controller</Filter>
+    </ClCompile>
+    <ClCompile Include="ScaleForm.cpp">
+      <Filter>Papyrus\Scaleform</Filter>
+    </ClCompile>
+    <ClCompile Include="Hooks_XInput.cpp">
+      <Filter>Hooks\XInput</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyboardHook.cpp">
+      <Filter>Hooks\Keyboard</Filter>
+    </ClCompile>
+    <ClCompile Include="InputShimHook.cpp">
+      <Filter>Hooks\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="IATUtils.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="vectors.cpp">
+      <Filter>Utilities</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraRotation.cpp">
+      <Filter>Utilities\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="GameInterface.cpp">
+      <Filter>Interfaces</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Logger.h">
+      <Filter>Logging</Filter>
+    </ClInclude>
+    <ClInclude Include="gpadconf.h">
+      <Filter>Config</Filter>
+    </ClInclude>
+    <ClInclude Include="PapyrusXInput.h">
+      <Filter>Papyrus\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="papyrusController.h">
+      <Filter>Papyrus\Controller</Filter>
+    </ClInclude>
+    <ClInclude Include="ScaleForm.h">
+      <Filter>Papyrus\Scaleform</Filter>
+    </ClInclude>
+    <ClInclude Include="Hooks_XInput.h">
+      <Filter>Hooks\XInput</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyboardHook.h">
+      <Filter>Hooks\Keyboard</Filter>
+    </ClInclude>
+    <ClInclude Include="InputShimHook.h">
+      <Filter>Hooks\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="IATUtils.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="unions.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="vectors.h">
+      <Filter>Utilities</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraRotation.h">
+      <Filter>Utilities\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="gpad_version.h">
+      <Filter>Version</Filter>
+    </ClInclude>
+    <ClInclude Include="GameInterface.h">
+      <Filter>Interfaces</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h" />
+    <ClInclude Include="resource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="gpad_version.rc">
+      <Filter>Version</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+</Project>
