@@ -46,20 +46,20 @@ void CameraRotation::RotateCamera(float const& angleX, float const& angleY, floa
 
 		PlayerCharacter* pPC = (*g_thePlayer);
 
-		_u_uint32_float_s posx(playerCamera->posX);
-		_u_uint32_float_s posy(playerCamera->posY);
-		_u_uint32_float_s posz(playerCamera->posZ);
-		_u_uint32_float_s rotx(playerCamera->rotX);
-		_u_uint32_float_s roty(playerCamera->rotY);
-		_u_uint32_float_s rotz(playerCamera->rotZ);
+		_u_uint32_float_s posx(playerCamera->pos.x);
+		_u_uint32_float_s posy(playerCamera->pos.y);
+		_u_uint32_float_s posz(playerCamera->pos.z);
+		_u_uint32_float_s rotx(playerCamera->rot.x);
+		_u_uint32_float_s roty(playerCamera->rot.y);
+		_u_uint32_float_s rotz(playerCamera->rot.z);
 		_u_uint32_float_s unk1(playerCamera->unk15C);
 
-		Log::VerboseDebug("playerCamera->posX: [0x%08x] [%f]", playerCamera->posX, posx.f);
-		Log::VerboseDebug("playerCamera->posY: [0x%08x] [%f]", playerCamera->posY, posy.f);
-		Log::VerboseDebug("playerCamera->posZ: [0x%08x] [%f]", playerCamera->posZ, posz.f);
-		Log::VerboseDebug("playerCamera->rotX: [0x%08x] [%f]", playerCamera->rotX, rotx.f);
-		Log::VerboseDebug("playerCamera->rotY: [0x%08x] [%f]", playerCamera->rotY, roty.f);
-		Log::VerboseDebug("playerCamera->rotZ: [0x%08x] [%f]", playerCamera->rotZ, rotz.f);
+		Log::VerboseDebug("playerCamera->posX: [0x%08x] [%f]", playerCamera->pos.x, posx.f);
+		Log::VerboseDebug("playerCamera->posY: [0x%08x] [%f]", playerCamera->pos.y, posy.f);
+		Log::VerboseDebug("playerCamera->posZ: [0x%08x] [%f]", playerCamera->pos.z, posz.f);
+		Log::VerboseDebug("playerCamera->rotX: [0x%08x] [%f]", playerCamera->rot.x, rotx.f);
+		Log::VerboseDebug("playerCamera->rotY: [0x%08x] [%f]", playerCamera->rot.y, roty.f);
+		Log::VerboseDebug("playerCamera->rotZ: [0x%08x] [%f]", playerCamera->rot.z, rotz.f);
 		Log::VerboseDebug("playerCamera->unk15C: [0x%08x] [%f]", playerCamera->unk15C, unk1.f);
 
 		//rotx.f = 1.4f;
@@ -77,12 +77,12 @@ void CameraRotation::RotateCamera(float const& angleX, float const& angleY, floa
 			rotx.f = pPC->rot.x;
 			roty.f = pPC->rot.y;
 			rotz.f = pPC->rot.z;
-			playerCamera->posX = posx.i;
-			playerCamera->posY = posy.i;
-			playerCamera->posZ = posz.i;
-			playerCamera->rotX = rotx.i;
-			playerCamera->rotY = roty.i;
-			playerCamera->rotZ = rotz.i;
+			playerCamera->pos.x = posx.i;
+			playerCamera->pos.y = posy.i;
+			playerCamera->pos.z = posz.i;
+			playerCamera->rot.x = rotx.i;
+			playerCamera->rot.y = roty.i;
+			playerCamera->rot.z = rotz.i;
 			NiAVObject::ControllerUpdateContext ctx;
 			camstate->camera->cameraNode->UpdateWorldData(&ctx);
 		}

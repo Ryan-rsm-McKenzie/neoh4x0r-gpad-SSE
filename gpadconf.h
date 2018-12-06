@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 const std::string & local_GetConfigPath(bool bwritepath);
 std::string local_GetConfigOption(const char * section, const char * key);
 bool local_GetConfigOption_UInt32(const char * section, const char * key, UInt32 * dataOut);
