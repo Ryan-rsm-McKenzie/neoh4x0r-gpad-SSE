@@ -80,7 +80,15 @@ public:
 	inline XINPUT_STATE GetPadState()
 	{
 		XINPUT_STATE pState = {0};
-		HRESULT hr = XInputGetState_RealFunc(0,&pState);
+		HRESULT hr;
+
+		// Look at 4 controller slots before giving up
+		for (int i = 0; i < 4; i++)
+		{
+			hr = XInputGetState_RealFunc(i, &pState);
+			if (hr == ERROR_SUCCESS) { break; }
+		}
+
 		if(hr != ERROR_SUCCESS) { Log::VerboseDebug("gPadBuffer::GetPadState()::HRESULT %d", hr); }
 		return pState;
 	}
