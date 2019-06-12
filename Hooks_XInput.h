@@ -13,47 +13,54 @@ enum
 	kDeviceType_Auto = 0xff,
 };
 
+
 #define ENABLE_EVENT_PROCESSING 1 // 1=enabled (used by gPadBuffer::ProcessEvents)
 #define ENABLE_MOUSE_MOVEMENT 0 //1=enabled allow mouse to move camera
 
+
 void Hooks_XInput_Commit(void);
 
-typedef DWORD (_stdcall * XInputGetStateProc)(DWORD,XINPUT_STATE *);
+
+typedef DWORD(_stdcall * XInputGetStateProc)(DWORD, XINPUT_STATE *);
 static XInputGetStateProc XInputGetState_RealFunc;
+
 
 namespace XINPUT_TRIGGER_KEYS
 {
 	typedef enum
 	{
-		LEFT_TRIGGER	=	0x0001,
-		RIGHT_TRIGGER	=	0x0002,
+		LEFT_TRIGGER = 0x0001,
+		RIGHT_TRIGGER = 0x0002,
 	};
 }
+
 
 typedef struct _gpad
 {
 	WORD	wButtons;
-    BYTE	bLeftTrigger;
-    BYTE	bRightTrigger;
-    SHORT	sThumbLX;
-    SHORT	sThumbLY;
-    SHORT	sThumbRX;
-    SHORT	sThumbRY;
+	BYTE	bLeftTrigger;
+	BYTE	bRightTrigger;
+	SHORT	sThumbLX;
+	SHORT	sThumbLY;
+	SHORT	sThumbRX;
+	SHORT	sThumbRY;
 }gpad;
+
+
 
 struct gPadBuffer
 {
 public:
-	gPadBuffer(): gButtons(0), gButtonsDisabled(0), gLeftTrigger(0),  gRightTrigger(0), gTriggersDisabled(0),
+	gPadBuffer() : gButtons(0), gButtonsDisabled(0), gLeftTrigger(0), gRightTrigger(0), gTriggersDisabled(0),
 		gsThumbLX(0), gsThumbLY(0), gsThumbRX(0), gsThumbRY(0),
 		b__gsThumbLX(0), b__gsThumbLY(0),
 		b__automove(0), xgpad()
 	{
 #if ENABLE_MOUSE_MOVEMENT
-		b__MoveMouse=0;
+		b__MoveMouse = 0;
 #endif
-		Last_LSDirection=0;
-		Last_GamepadButtons=0;
+		Last_LSDirection = 0;
+		Last_GamepadButtons = 0;
 	}
 
 	bool push(UInt32 key, bool bHeld);
@@ -121,8 +128,8 @@ private:
 	WORD			gButtons;
 	WORD			gButtonsDisabled;
 	BYTE			gTriggersDisabled;
-    BYTE			gLeftTrigger;
-    BYTE			gRightTrigger;
+	BYTE			gLeftTrigger;
+	BYTE			gRightTrigger;
 
 	BYTE			b__automove;
 
@@ -136,58 +143,61 @@ private:
 	// LEFT_STICK:  LEFT/RIGHT
 	SHORT			gsThumbLX;
 	// RIGHT_STICK: LEFT/RIGHT
-    SHORT			gsThumbRX;
+	SHORT			gsThumbRX;
 
 	// LEFT_STICK:  UP/DOWN
-    SHORT			gsThumbLY;
+	SHORT			gsThumbLY;
 	// RIGHT_STICK: UP/DOWN
-    SHORT			gsThumbRY;
+	SHORT			gsThumbRY;
 
 	gpad			xgpad;
 
-	#pragma region Help Functions
-inline bool IsMenuOpen(BSFixedString menuName)
-{
-	MenuManager	* mm = MenuManager::GetSingleton();
-	if(mm) { return mm->IsMenuOpen(&menuName); }
-	return false;
-}
-inline bool IsTextInputActive()
-{
-	/* check if we are in text input mode
-	   if so, then we should not open any menus
-	*/
-	//Log::VerboseDebug("DEBUG::IsTextInputActive() called");
-	InputManager* im = InputManager::GetSingleton();
-	if(im)
+#pragma region Help Functions
+	inline bool IsMenuOpen(BSFixedString menuName)
 	{
-		//Log::VerboseDebug("DEBUG::IsTextInputActive() im->allowTextInput = %d", im->allowTextInput);
-		return im->allowTextInput > 0 && im->allowTextInput < 0xff;
+		MenuManager	* mm = MenuManager::GetSingleton();
+		if (mm) { return mm->IsMenuOpen(&menuName); }
+		return false;
 	}
-	//else
-	//{
-	//	Log::VerboseDebug("DEBUG::IsTextInputActive() InputManager == null");
-	//}
-	return false;
-}
-inline void OpenMenu(BSFixedString menuName)
-{
-	if (IsTextInputActive()) { return; }
-	if (IsMenuOpen(menuName)) { return; }
-	StringCache::Ref menuNameRef;
-	CALL_MEMBER_FN(&menuNameRef, ctor)(menuName.data);
-	CALL_MEMBER_FN(UIManager::GetSingleton(), AddMessage)(&menuNameRef, UIMessage::kMessage_Open, NULL);
-	CALL_MEMBER_FN(&menuNameRef, Release)();
-}
-inline void CloseMenu(BSFixedString menuName)
-{
-	//if (IsTextInputActive()) { return; }
-	if (!IsMenuOpen(menuName)) { return; }
-	StringCache::Ref menuNameRef;
-	CALL_MEMBER_FN(&menuNameRef, ctor)(menuName.data);
-	CALL_MEMBER_FN(UIManager::GetSingleton(), AddMessage)(&menuNameRef, UIMessage::kMessage_Close, NULL);
-	CALL_MEMBER_FN(&menuNameRef, Release)();
-}
+	inline bool IsTextInputActive()
+	{
+		/* check if we are in text input mode
+		   if so, then we should not open any menus
+		*/
+		//Log::VerboseDebug("DEBUG::IsTextInputActive() called");
+		InputManager* im = InputManager::GetSingleton();
+		if (im) {
+			//Log::VerboseDebug("DEBUG::IsTextInputActive() im->allowTextInput = %d", im->allowTextInput);
+			return im->allowTextInput > 0 && im->allowTextInput < 0xff;
+		}
+		//else
+		//{
+		//	Log::VerboseDebug("DEBUG::IsTextInputActive() InputManager == null");
+		//}
+		return false;
+	}
+
+
+	inline void OpenMenu(BSFixedString menuName)
+	{
+		if (IsTextInputActive()) { return; }
+		if (IsMenuOpen(menuName)) { return; }
+		StringCache::Ref menuNameRef;
+		CALL_MEMBER_FN(&menuNameRef, ctor)(menuName.data);
+		CALL_MEMBER_FN(UIManager::GetSingleton(), AddMessage)(&menuNameRef, UIMessage::kMessage_Open, NULL);
+		CALL_MEMBER_FN(&menuNameRef, Release)();
+	}
+
+
+	inline void CloseMenu(BSFixedString menuName)
+	{
+		//if (IsTextInputActive()) { return; }
+		if (!IsMenuOpen(menuName)) { return; }
+		StringCache::Ref menuNameRef;
+		CALL_MEMBER_FN(&menuNameRef, ctor)(menuName.data);
+		CALL_MEMBER_FN(UIManager::GetSingleton(), AddMessage)(&menuNameRef, UIMessage::kMessage_Close, NULL);
+		CALL_MEMBER_FN(&menuNameRef, Release)();
+	}
 #pragma endregion
 
 #pragma region extened control names
@@ -205,6 +215,7 @@ inline void CloseMenu(BSFixedString menuName)
 	const char* AutoMove(void) const { return "Auto-Move"; }
 #pragma endregion
 };
+
 
 class XInputHookControl //: public mISingleton <XInputHookControl>
 {
